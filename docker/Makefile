@@ -1,9 +1,19 @@
 SYSTEM = $(shell uname -s)
-DOCKER_IMAGE = blockscout_prod
+DOCKER_IMAGE = blockscout_bounty
 BS_CONTAINER_NAME = blockscout
 THIS_FILE = $(lastword $(MAKEFILE_LIST))
 
-DB_URL = postgresql://$(DB_USER):$(DB_PASS)@$(DB_HOST)/$(DB_NAME)?ssl=true
+NETWORK=Fuse
+LOGO=/images/fuse_logo.svg
+ETHEREUM_JSONRPC_VARIANT=parity
+ETHEREUM_JSONRPC_HTTP_URL=https://explorer-node.fuse.io
+ETHEREUM_JSONRPC_TRACE_URL=https://explorer-node.fuse.io
+ETHEREUM_JSONRPC_WS_URL=wss://explorer-node.fuse.io/ws
+COIN=FUSE
+DB_HOST=host.docker.internal:5432
+DB_NAME=fusenet_explorer
+DB_USER=postgres
+DB_URL=postgresql://$(DB_USER):@$(DB_HOST)/$(DB_NAME)?ssl=false
 
 BLOCKSCOUT_CONTAINNER_PARAMS = -e 'MIX_ENV=prod' \
 															 -e 'DATABASE_URL=$(DB_URL)'
@@ -63,7 +73,6 @@ start: build
 	@echo "==> Starting blockscout"
 	@docker run \
 					--log-opt max-size=10m --log-opt max-file=100 --log-opt compress=true \
-					--detach \
 					--name $(BS_CONTAINER_NAME) \
 					$(BLOCKSCOUT_CONTAINNER_PARAMS) \
 					-p 4000:4000 \
