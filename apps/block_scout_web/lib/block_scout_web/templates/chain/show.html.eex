@@ -5,20 +5,7 @@
       <!-- Stats -->
       <div class="dashboard-banner-network-plain-container">
         <div class="dashboard-banner-network-stats">
-          <%= case @average_block_time do %>
-            <% {:error, :disabled} -> %>
-              <%= nil %>
-            <% average_block_time -> %>
-              <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-1">
-                <span class="dashboard-banner-network-stats-label">
-                  <%= gettext "Average block time" %>
-                </span>
-                <span class="dashboard-banner-network-stats-value" data-selector="average-block-time">
-                  <%= Timex.format_duration(average_block_time, Explorer.Counters.AverageBlockTimeDurationFormat) %>
-                </span>
-              </div>
-          <% end %>
-          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-2">
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-1">
             <span class="dashboard-banner-network-stats-label">
               <%= gettext "Total transactions" %>
             </span>
@@ -26,20 +13,52 @@
               <%= Cldr.Number.to_string!(@transaction_estimated_count, format: "#,###") %>
             </span>
           </div>
-          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-3">
-            <span class="dashboard-banner-network-stats-label">
-              <%= gettext "Total blocks" %>
-            </span>
-            <span class="dashboard-banner-network-stats-value" data-selector="block-count">
-              <%= Cldr.Number.to_string!(@block_count, format: "#,###") %>
-            </span>
-          </div>
-          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-4">
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-2">
             <span class="dashboard-banner-network-stats-label">
               <%= gettext "Wallet addresses" %>
             </span>
             <span class="dashboard-banner-network-stats-value" data-selector="address-count">
               <%= Cldr.Number.to_string!(@address_count, format: "#,###") %>
+            </span>
+          </div>
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-2">
+            <span class="dashboard-banner-network-stats-label">
+              <%= gettext "Block Count" %>
+            </span>
+            <span class="dashboard-banner-network-stats-value" data-selector="block-count">
+              <%= Cldr.Number.to_string!(@block_count, format: "#,###") %>
+            </span>
+          </div>
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-3">
+            <span class="dashboard-banner-network-stats-label">
+              <%= gettext "Total Staked" %>
+            </span>
+            <span class="dashboard-banner-network-stats-value" data-selector="total-staked">
+              <%= Cldr.Number.to_string!(@total_staked, format: "#,###") %>
+            </span>
+          </div>
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-4">
+            <span class="dashboard-banner-network-stats-label">
+              <%= gettext "Active Validators" %>
+            </span>
+            <span class="dashboard-banner-network-stats-value" data-selector="active-validators">
+              <%= Cldr.Number.to_string!(@active_validators, format: "#,###") %>
+            </span>
+          </div>
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-5">
+            <span class="dashboard-banner-network-stats-label">
+              <%= gettext "Next Cycle" %>
+            </span>
+            <span class="dashboard-banner-network-stats-value" data-selector="next-cycle">
+              <%= Cldr.Number.to_string!(@next_cycle, format: "#,###") %>
+            </span>
+          </div>
+          <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-6">
+            <span class="dashboard-banner-network-stats-label">
+              <%= gettext "Current Cycle Blocks" %>
+            </span>
+            <span class="dashboard-banner-network-stats-value" data-selector="current-cycle-blocks">
+              <%= Cldr.Number.to_string!(@current_cycle_blocks, format: "#,###") %>
             </span>
           </div>
         </div>

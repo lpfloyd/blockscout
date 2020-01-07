@@ -12,7 +12,11 @@ defmodule BlockScoutWeb.ChainController do
 
   def show(conn, _params) do
     transaction_estimated_count = Chain.transaction_estimated_count()
-    block_count = Chain.block_estimated_count()
+    block_count = Chain.block_estimated_count() 
+    total_staked = 150000000
+    active_validators = 32
+    next_cycle = 3000
+    current_cycle_blocks = 3222
 
     market_cap_calculation =
       case Application.get_env(:explorer, :supply) do
@@ -35,7 +39,11 @@ defmodule BlockScoutWeb.ChainController do
       market_cap_calculation: market_cap_calculation,
       transaction_estimated_count: transaction_estimated_count,
       transactions_path: recent_transactions_path(conn, :index),
-      block_count: block_count
+      block_count: block_count,
+      total_staked: total_staked,
+      active_validators: active_validators,
+      next_cycle: next_cycle,
+      current_cycle_blocks: current_cycle_blocks
     )
   end
 
